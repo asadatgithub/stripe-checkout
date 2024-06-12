@@ -41,16 +41,6 @@
         <div class="loader"></div>
         <p>Your payment is being processed, please wait...</p>
     </div>
-    <script>
-        // Wait for the Stripe.js library to load
-        document.addEventListener('DOMContentLoaded', function () {
-            if (typeof Stripe !== 'undefined') {
-                // Notify Flutter app that Stripe is ready
-                window.flutter_inappwebview.callHandler('onStripeReady');
-            } else {
-                console.error('Stripe.js failed to load.');
-            }
-        });
-    </script>
+  
 </body>
 </html>
