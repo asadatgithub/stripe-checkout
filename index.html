@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processing Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         body, html {
             height: 100%;
@@ -27,24 +28,29 @@
             width: 120px;
             height: 120px;
             animation: spin 2s linear infinite;
-            margin: 0 auto;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        .message {
-            font-size: 20px;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <div class="loader-container">
         <div class="loader"></div>
-        <div class="message">Your payment is being processed, please wait...</div>
+        <p>Your payment is being processed, please wait...</p>
     </div>
+    <script>
+        // Wait for the Stripe.js library to load
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Stripe !== 'undefined') {
+                // Notify Flutter app that Stripe is ready
+                window.flutter_inappwebview.callHandler('onStripeReady');
+            } else {
+                console.error('Stripe.js failed to load.');
+            }
+        });
+    </script>
 </body>
 </html>
